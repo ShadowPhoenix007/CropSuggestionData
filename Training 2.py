@@ -1,4 +1,5 @@
 import os
+import sys
 from sklearn.tree import DecisionTreeClassifier, plot_tree
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
@@ -13,17 +14,11 @@ import joblib
 
 seaborn.set_theme()
 
-path = "C:/Users/ASUS/Downloads/ImagineCupTest/CropSuggestionData/CropReco.csv"
+path = os.path.join(sys.path[0], "CropReco.csv")
 
 ard = pd.read_csv(path)
 numClasses = ard['label'].unique().shape[0]
 classes = ard['label'].unique()
-
-print("Number of classes = ", numClasses)
-print("Classes = ", classes)
-
-grouped = ard.groupby("label")
-
 columns = ['N', 'P', 'K', 'temperature', 'humidity', 'ph', 'rainfall', 'label']
 
 features = ard[columns]

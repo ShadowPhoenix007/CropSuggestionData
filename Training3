@@ -1,4 +1,5 @@
 import os
+import sys
 from sklearn.tree import DecisionTreeClassifier, plot_tree
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
@@ -13,7 +14,7 @@ import joblib
 
 seaborn.set_theme()
 
-path = "C:/Users/ASUS/Downloads/Crop_recommendation.csv"
+path = os.path.join(sys.path[0], "Crop_recommendation.csv")
 
 ard = pd.read_csv(path)
 numClasses = ard['label'].unique().shape[0]
@@ -49,7 +50,7 @@ print (model.predict(rice_sample))
 joblib.dump(model, "agromodel.sav") 
 
 
-fig, axy = plt.subplots(4, 2, figsize=(9, 16))
+"""fig, axy = plt.subplots(4, 2, figsize=(9, 16))
 axy[0, 0].set_title("Nitrogen")
 grouped.mean()["N"].plot(kind="barh", ax=axy[0, 0])
 axy[0, 1].set_title("Phosphorus")
@@ -65,4 +66,4 @@ grouped.mean()["rainfall"].plot(kind="barh", ax=axy[2, 1])
 axy[3, 0].set_title("pH value")
 grouped.mean()["ph"].plot(kind="barh", ax=axy[3, 0])
 plt.tight_layout()
-plt.show()
+plt.show()"""
